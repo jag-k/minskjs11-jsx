@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Создание виджетов на iOS с использованием JSX</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="node_modules/@shower/ribbon/styles/styles.css"
+    />
+    <link rel="stylesheet" href="public/styles/index.css" />
+    <link rel="stylesheet" href="public/styles/highlight/default.min.css" />
+    <link
+      rel="stylesheet"
+      href="public/styles/highlight/atom-one-light.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="public/images/scriptable-icon.png"
+      width="512"
+      height="512"
+    />
+  </head>
+
+  <body class="shower list">
+    <header class="caption">
+      <h1>Создание виджетов на iOS с использованием JSX</h1>
+      <p>Олег Поздняков, OpenWeather</p>
+    </header>
+
+    <section class="slide clear" id="cover">
+      <img src="public/images/ai-bg.webp" class="cover h" aria-hidden="true" />
+      <h2 class="shout white" style="font-size: 3.8em">
+        Создание виджетов на iOS <br />
+        с использованием JSX
+      </h2>
+    </section>
+
+    <section class="slide">
+      <h2>Обо мне</h2>
+      <div class="flex">
+        <ul>
+          <li>Я — Олег Поздняков</li>
+          <li>
+            Занимаюсь разработкой 7 лет
+            <span class="gray" style="display: block; font-size: 0.8em"
+              >(в свой 21 год)</span
+            >
+          </li>
+          <li>Работаю Python Backend developer в OpenWeather</li>
+        </ul>
+        <img
+          alt="avatar"
+          class="avatar"
+          src="public/images/avatar.jpg"
+          width="460"
+          height="460"
+        />
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 hidden="until-found" class="white">
+        JavaScript. JavaScript Everywhere
+      </h2>
+      <img
+        class="cover width height full-width"
+        src="public/images/js-everywhere.jpeg"
+        alt="JS everywhere"
+        width="888"
+        height="500"
+        srcset="public/images/js-everywhere@2x.jpeg 2x"
+      />
+    </section>
+
+    <section class="slide">
+      <h2 class="shout">Небольшая предыстория</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Обо мне (в прошлом)</h2>
+      <div class="flex">
+        <ul>
+          <li>Я — Олег Поздняков</li>
+          <li>Мне 18 лет</li>
+          <li>Нигде не работаю и только учусь</li>
+          <li>Делаю пет-проекты</li>
+        </ul>
+        <img
+          alt="avatar"
+          class="avatar"
+          src="public/images/avatar.jpg"
+          width="460"
+          height="460"
+        />
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>iOS 14 (2020 год)</h2>
+      <div class="flex">
+        <img
+          class="full-width"
+          src="public/images/ios14.png"
+          alt="iOS 14"
+          id="ios14"
+          width="2774"
+          height="1450"
+        />
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>
+        Виджеты бывают разные
+        <br />
+        <span style="font-size: 0.4em; opacity: 0.6">
+          Чёрные, белые, красные
+        </span>
+      </h2>
+
+      <div class="widgets">
+        <img
+          src="public/images/widget-small.png"
+          alt="Часы"
+          width="328"
+          height="328"
+          style="grid-area: s"
+        />
+        <p style="grid-area: st">Small</p>
+        <img
+          src="public/images/widget-medium.png"
+          alt="Заряд баттарей"
+          height="720"
+          height="328"
+          style="grid-area: m"
+        />
+        <p style="grid-area: mt">Medium</p>
+        <img
+          src="public/images/widget-large.png"
+          alt="Погода"
+          width="720"
+          height="720"
+          style="grid-area: l"
+        />
+        <p style="grid-area: lt">Large</p>
+        <img
+          src="public/images/widget-extralarge.png"
+          alt="Подкасты"
+          width="1440"
+          height="720"
+          style="grid-area: xl"
+        />
+        <p style="grid-area: xlt">Extra-Large</p>
+      </div>
+    </section>
+
+    <section class="slide" id="scriptable-slide">
+      <div class="columns two">
+        <img
+          class="scriptable-screen full-width"
+          src="public/images/scriptable-screen.png"
+          height="1784"
+          width="890"
+          alt="Scriptable Scripts Screen"
+        />
+
+        <div class="description-column">
+          <div class="icon-and-name">
+            <img
+              class="appIconLarge"
+              src="public/images/scriptable-icon.png"
+              alt="Scriptable App Icon"
+              aria-hidden="true"
+              width="512"
+              height="512"
+            />
+            <h2>Scriptable</h2>
+          </div>
+
+          <p>Automate iOS using JavaScript</p>
+
+          <a
+            class="appStore"
+            href="https://apps.apple.com/us/app/scriptable/id1405459188"
+            aria-label="Download on the AppStore"
+          >
+            <img
+              src="public/images/appstore.png"
+              aria-hidden="true"
+              alt="Download on the AppStore"
+            />
+          </a>
+          <a href="https://scriptable.app/">
+            <qr-code data="https://scriptable.app/" size="150" margin="20" />
+          </a>
+        </div>
+      </div>
+      <a class="copyright right white" href="https://scriptable.app/">
+        Scriptable App site
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2>❗ Дисклеймер ❗</h2>
+      <ul>
+        <li>Приложение Scriptable — iOS/iPadOS only!</li>
+        <li class="next">
+          Делать виджеты на React Native/Flutter — невозможно
+        </li>
+        <li class="next">
+          Делать виджеты на Swift/Objective-C — можно, но я не умею
+        </li>
+        <li class="next">
+          Я хочу супер тонкий <s>клиент</s> виджет. Мне не нужно полноценное
+          приложение
+        </li>
+      </ul>
+    </section>
+    <section class="slide with-code">
+      <h2>
+        Hello World.js в
+        <img
+          class="scriptable-icon"
+          src="public/images/scriptable-icon.png"
+          alt="Scriptable"
+          width="512"
+          height="512"
+        />
+      </h2>
+      <div class="columns two">
+        <pre><code class="hljs language-javascript" data-spotlight-code="1;2;3;5;6;8" >const widget = new ListWidget();
+const text = widget.addText('Hello World!');
+text.textColor = Color.red();
+
+if (config.runsInWidget) {
+    Script.setWidget(widget);
+} else {
+    await widget.presentMedium();
+}</code></pre>
+
+        <img
+          class="preview-image next"
+          src="public/images/hello-world-widget.png"
+          alt="Скриншот виджета “Hello world” из примера выше"
+          width="1014"
+          height="478"
+          srcset="public/images/hello-world-widget@2x.png 2x"
+        />
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="double">
+        <pre><code class="hljs language-javascript" data-ln-start-from="7" data-spotlight-code="9;10;11;12;13;15;17;18">...else {
+  // Создаём новый алерт и наполняем его контентом
+  let alert = new Alert();
+  alert.title = "Enter Code";
+  alert.addTextField("0000#0000", "");
+  alert.addAction("OK");
+  alert.addAction("Cancel");
+  // "Презентуем" алерт и проверяем, что пользователь нажал на кнопку OK
+  if (await alert.present() == 0) {
+    // Получаем текст из поля ввода и выводим его в консоль
+    let text = alert.textFieldValue(0);
+    console.log("Entered Text: " + text);
+  }
+}</code></pre>
+
+        <video muted loop class="preview-video next" width="582" height="1080">
+          <source src="public/videos/webm/interactive.webm" type="video/webm" />
+          <source src="public/videos/mp4/interactive.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="shout" aria-label="Классно! Но а как писать?">
+        <span aria-label="Классно">👍</span>
+        <span class="next">, но... </span>
+        <br />
+        <span class="next">А как писать?</span>
+      </h2>
+    </section>
+
+    <section class="slide">
+      <h2 class="shout">А какие у нас вообще есть варианты?</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Писать прямо на телефоне</h2>
+
+      <p class="shout next">❌ Больно</p>
+      <p
+        class="place bottom left next"
+        style="padding: 0.25em 1em; opacity: 0.5"
+      >
+        Ускорено в 5 раз. В реальности видео длинной 2:37
+      </p>
+      <video
+        muted
+        class="preview-video next"
+        width="498"
+        height="1080"
+        playback-rate="5"
+      >
+        <source
+          src="public/videos/webm/code_on_iphone.webm"
+          type="video/webm"
+        />
+        <source src="public/videos/mp4/code_on_iphone.mp4" type="video/mp4" />
+      </video>
+    </section>
+
+    <section class="slide">
+      <h2>Купить iPad и делать на нём</h2>
+      <p class="next shout">❌ Дорого</p>
+    </section>
+
+    <section class="slide">
+      <h2>Пишем код как нормальный человек</h2>
+      <p class="shout next">✅ ДААА!!!</p>
+    </section>
+    <section class="slide clear black">
+      <h2 hidden="until-found">Ведь так? Ведь так?((</h2>
+
+      <img
+        class="full-width cover"
+        src="public/images/padme.jpg"
+        alt="Ведь так мем"
+        width="925"
+        height="800"
+      />
+    </section>
+    <section class="slide clear black">
+      <h2 hidden="until-found">Плакала половина маршрутки</h2>
+      <div class="cover">
+        <img
+          class="full-width"
+          src="public/images/cried-half-the-minibus.png"
+          alt="JSX"
+          width="740"
+          height="916"
+        />
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Ужасный Workflow</h2>
+      <span class="bold">Mac Required!</span>
+      <p>
+        Путь к папке Scriptable в iCloud:
+        <code style="font-size: 0.8em"
+          >~/Library/MobileDocuments/iCloud~dk~simonbs~Scriptable/Documents</code
+        >
+      </p>
+      <ol>
+        <li>
+          При помощи скрипта (Gulp) или ручками переносим .js файл в папку
+        </li>
+      </ol>
+    </section>
+
+    <section class="slide clear black">
+      <h2 class="white">2. Ждём синхронизацию в iCloud с Mac</h2>
+      <video class="cover" loop width="1920" height="1032" loop>
+        <source src="public/videos/webm/upload_script.webm" type="video/webm" />
+        <source src="public/videos/mp4/upload_script.mp4" type="video/mp4" />
+      </video>
+    </section>
+
+    <section class="slide clear">
+      <h2>3. Ждём синхронизацию из<br />iCloud на iPhone</h2>
+      <video class="preview-video" controls width="632" height="1080" loop>
+        <source
+          src="public/videos/webm/update_icloud_on_iphone.webm"
+          type="video/webm"
+        />
+        <source
+          src="public/videos/mp4/update_icloud_on_iphone.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </section>
+
+    <section class="slide clear">
+      <h2>4. Пытаемся заставить iOS <br />перезагрузить виджеты</h2>
+      <video class="preview-video" controls width="582" height="1080" loop>
+        <source src="public/videos/webm/update_widget.webm" type="video/webm" />
+        <source src="public/videos/mp4/update_widget.mp4" type="video/mp4" />
+      </video>
+    </section>
+
+    <section class="slide">
+      <h2>А ещё оно ломается...</h2>
+      <img class="full-width cover" src="public/images/icloud_loading.png" />
+    </section>
+
+    <section class="slide">
+      <h2 class="shout shrink">
+        <img
+          class="scriptable-icon"
+          src="public/images/scriptable-icon.png"
+          alt="Scriptable"
+          width="512"
+          height="512"
+        />
+        Scriptable <br />
+        на MacOS
+        <span class="next block" style="font-size: 0.5em; opacity: 0.75">
+          Но есть маленькое "но"...
+        </span>
+      </h2>
+    </section>
+
+    <section class="slide">
+      <h2 class="shout">Писать всё равно не удобно</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Random Scriptable API Widget</h2>
+
+      <img
+        class="full-width"
+        src="public/images/random-scriptable-api-widget.png"
+        alt="Scriptable на MacOS"
+        width="1014"
+        height="474"
+      />
+      <a
+        class="copyright right"
+        href="https://scriptable.app/gallery/random-scriptable-api"
+      >
+        Scriptable Gallery
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2>Random Scriptable API Widget</h2>
+      <pre><code class="hljs language-javascript">let widget = new ListWidget();
+// Show app icon and title
+let titleStack = widget.addStack();
+let appIconElement = titleStack.addImage(appIcon);
+appIconElement.imageSize = new Size(15, 15);
+appIconElement.cornerRadius = 4;
+titleStack.addSpacer(4);
+let titleElement = titleStack.addText(title);
+titleElement.textColor = Color.white();
+titleElement.textOpacity = 0.7;
+titleElement.font = Font.mediumSystemFont(13);
+widget.addSpacer(12);</code></pre>
+
+      <p style="opacity: 0.5">
+        Не пытайтесь понять что тут происходит. Честно.
+      </p>
+
+      <a
+        class="copyright right"
+        href="https://gist.github.com/jag-k/e7068a779fd72a5dfef1ccbda77e3700"
+      >
+        Полный код сприпта в gist
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2 class="shout">
+        Идея 💡
+        <span class="next block">Реализовать JSX</span>
+      </h2>
+    </section>
+
+    <section class="slide">
+      <h2>Сформулируем хотелки</h2>
+
+      <ul>
+        <li>Возможность разделить код на разные файлы — Rollup</li>
+        <li class="next">Удобный синтаксис — JSX</li>
+        <li class="next">
+          Типы — <code>.d.ts</code>, <code>.tsx</code>, TypeScript
+        </li>
+        <li class="next">
+          Возможность простой дистрибуции — <code>.js</code> и
+          <code>.scriptable</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Hello World.js</h2>
+
+      <pre><code class="hljs language-javascript">const widget = new ListWidget();
+const text = widget.addText('Hello World!');
+text.textColor = Color.red();
+
+if (config.runsInWidget) {
+    Script.setWidget(widget);
+} else {
+    await widget.presentMedium();
+}</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>Hello World.tsx</h2>
+      <pre><code class="hljs language-javascript">import {ScriptableJSX} from "@jag-k/scriptable-tsx";
+
+const widget = (
+  &lt;widget&gt;
+    &lt;text color={Color.red()}&gt;Hello World!&lt;/text&gt;
+  &lt;/widget&gt;
+);
+
+if (config.runsInWidget) {
+    Script.setWidget(widget);
+} else {
+    await widget.presentMedium();
+}</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>Hello World.tsx (compiled)</h2>
+      <pre><code class="hljs language-javascript nohljsln-visual" data-spotlight-code="1;2;4">const widget = (
+  ScriptableJSX.createElement("widget", null,
+    ScriptableJSX.createElement("text", { color: Color.red() },
+    "Hello World!"
+    )
+  )
+);
+
+if (config.runsInWidget) {
+    Script.setWidget(widget);
+}
+else {
+    await widget.presentMedium();
+}</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>Как это всё работает?</h2>
+      <dl>
+        <div>
+          <dt>JSX itself</dt>
+          <dd>
+            <a href="https://www.npmjs.com/package/@jag-k/scriptable-jsx">
+              @jag-k/scriptable-jsx
+            </a>
+            (Делал сам)
+          </dd>
+        </div>
+
+        <div>
+          <dt>Rollup plugin</dt>
+          <dd>
+            <a
+              href="https://www.npmjs.com/package/@jag-k/rollup-plugin-scriptable"
+            >
+              @jag-k/rollup-plugin-scriptable
+            </a>
+            (Тоже делал сам)
+          </dd>
+        </div>
+
+        <div>
+          <dt>Scriptable API types</dt>
+          <dd>
+            <a href="https://www.npmjs.com/package/@types/scriptable-ios">
+              @types/scriptable-ios
+            </a>
+            (А за это спасибо комьюнити)
+          </dd>
+        </div>
+      </dl>
+
+      <ul>
+        <li>Rollup собирает весь наш код</li>
+        <li>TypeScript разрешает все типы и jsx</li>
+        <li>
+          На выходе получаем <code>.scriptable</code> и <code>.js</code> файлы
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>ScriptableJSX</h2>
+      <pre><code class="hljs language-javascript">const createElements = [widgetCreateElement, alertCreateElement];
+
+class ScriptableJSX {
+  static createElement(element, props, ...children) {
+    for (const creator of createElements) {
+      const res = creator(element, props, ...children);
+      if (res) {
+        return res;
+      }
+    }
+  }
+}
+</code></pre>
+      <a
+        class="copyright right"
+        href="https://github.com/jag-k/scriptable-jsx/blob/main/src/index.ts#L4-L19"
+      >
+        Полный код
+      </a>
+    </section>
+
+    <section class="slide">
+      <pre><code class="hljs language-javascript nohljsln-visual">function widgetCreateElement(element, props, ...children) {
+  switch (element) {
+    case "widget":
+      const widget = new ListWidget();
+      processContainerChildren(widget, children);
+      processWidgetProps(widget, props || {});
+      return widget;
+    case "stack":
+      return { type: element, props, children };
+    case "spacer":
+    case "image":
+    case "date":
+      return { type: element, props };
+  }
+}
+</code></pre>
+
+      <a
+        class="copyright right"
+        href="https://github.com/jag-k/scriptable-jsx/blob/main/src/widget.ts#L342-L377"
+      >
+        Полный код
+      </a>
+    </section>
+
+    <section class="slide">
+      <pre><code class="hljs language-javascript nohljsln-visual">function processContainerChildren(widget, children) {
+  for (const child of children) {
+    if (typeof child === "string" || ...) { widget.addText(String(child)); }
+    else if (typeof child === "object") {
+      if (child instanceof Array) { processContainerChildren(widget, child); }
+      else if (child instanceof Date) { widget.addDate(child); }
+      else if (child instanceof Image) { widget.addImage(child); }
+      else if ("type" in child) {
+        switch (child.type) {
+          case "text": {
+            const text = widget.addText(child.text);
+            processTextProps(text, child.props || {});
+            break;
+          }
+          case "date": ...
+          case "stack": ...
+          case "spacer": ...
+          case "image": ...
+          ...</code></pre>
+
+      <a
+        class="copyright right"
+        href="https://github.com/jag-k/scriptable-jsx/blob/main/src/widget.ts#L241-L341"
+      >
+        Полный код
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2>tsconfig.json</h2>
+      <pre><code class="hljs language-json">{
+  "compilerOptions": {
+    "jsx": "react",
+    "jsxFactory": "ScriptableJSX.createElement",
+    "typeRoots": [
+      "./node_modules/@jag-k/scriptable-jsx",
+    ],
+    "types": [
+      "node",
+      "@jag-k/scriptable-jsx/types",
+      "@types/scriptable-ios",
+    ]
+  }
+}</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>rollup.config.js</h2>
+      <pre><code class="hljs language-javascript">import typescript from '@rollup/plugin-typescript';
+import scriptableBundle from "@jag-k/rollup-plugin-scriptable";
+import * as config from "./config.json";
+import {nodeResolve} from '@rollup/plugin-node-resolve';
+
+export default {
+  input: 'src/main.ts',
+  output: [
+    {
+      file: `dist/${config.name}.js`, format: 'es',
+      plugins: [scriptableBundle(config)]
+    },
+  ],
+  plugins: [ nodeResolve(), typescript() ],
+};</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>config.json</h2>
+      <pre><code class="hljs language-json">{
+  "always_run_in_app": false,
+  "icon": {
+    "color": "yellow",
+    "glyph":"magic"  // SF Symbols
+  },
+  "name":"Hello JSX",
+  "share_sheet_inputs": [],  // Это настраивается в самом Scriptable
+}</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>Hello JSX.scriptable</h2>
+      <pre><code class="hljs language-json">{
+  "always_run_in_app": false,
+  "icon": {
+    "color": "yellow",
+    "glyph":"magic"  // SF Symbols
+  },
+  "name":"Hello JSX",
+  "share_sheet_inputs": [],  // Это настраивается в самом Scriptable
+  "script":"function processJSXColor(color) {..."
+}</code></pre>
+    </section>
+
+    <section class="slide">
+      <h2>
+        Примеры:
+        <a href="https://github.com/jag-k/SberFood"> Виджет для SberFood </a>
+      </h2>
+      <p>
+        СберФуд — Система лояльности от Сбербанка. Теперь называется
+        <a href="https://plazius.ru/">Plazius</a>
+      </p>
+      <img
+        class="full-width"
+        src="https://opengraph.githubassets.com/_/jag-k/SberFood"
+        alt="SberFood Widget"
+      />
+      <img
+        class="place left bottom next"
+        src="https://github.com/jag-k/SberFood/raw/master/images/medium_with-id.png"
+        alt="SberFood Widget"
+        width="1080"
+        height="506"
+        style="margin: 2em 1.5em; width: 400px; height: auto"
+      />
+
+      <a
+        class="copyright right"
+        href="https://github.com/jag-k/SberFood"
+        aria-hidden="true"
+      >
+        <qr-code data="https://github.com/jag-k/SberFood" size="100" />
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2>
+        Примеры:
+        <a href="https://github.com/jag-k/yandex-balance">Яндекс.Бейдж</a>
+      </h2>
+      <p>Виджет для отображения баланса бейджика сотрудника Яндекса</p>
+      <img
+        class="full-width"
+        src="https://opengraph.githubassets.com/_/jag-k/yandex-balance"
+        alt="Яндекс.Бейдж"
+      />
+      <img
+        class="place left bottom next"
+        src="https://github.com/jag-k/yandex-balance/raw/main/images/dark/medium.png"
+        alt="YandexBalance Widget"
+        width="1080"
+        height="507"
+        style="margin: 2em 1.5em; width: 400px; height: auto"
+      />
+
+      <a class="copyright right" href="https://github.com/jag-k/yandex-balance">
+        <qr-code data="https://github.com/jag-k/yandex-balance" size="100" />
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2>
+        Примеры:
+        <a href="https://github.com/jag-k/scriptable-hass-persons">
+          HomeAssistant Persons Widget
+        </a>
+      </h2>
+      <p>
+        Просто узнать кто сейчас находится дома. Берёт данные из
+        <a href="https://home-assistant.io/">HomeAssistant</a>
+      </p>
+      <img
+        class="full-width"
+        src="https://repository-images.githubusercontent.com/523862358/294be26a-ee4b-4b46-915a-b76851880375"
+        alt="HomeAssistant Persons Widget"
+      />
+
+      <a
+        class="copyright right"
+        href="https://github.com/jag-k/scriptable-hass-persons"
+      >
+        <qr-code
+          data="https://github.com/jag-k/scriptable-hass-persons"
+          size="100"
+        />
+      </a>
+    </section>
+
+    <section class="slide">
+      <h2 class="shrink shout">
+        <a href="https://github.com/jag-k/scriptable-jsx-template">
+          Try it now!
+          <qr-code
+            aria-hidden="true"
+            style="margin-top: 20px"
+            data="https://github.com/jag-k/scriptable-jsx-template"
+            size="300"
+          />
+        </a>
+      </h2>
+    </section>
+    <section class="slide">
+      <h2>Спасибо за внимание!</h2>
+      <div class="flex">
+        <ul class="links">
+          <li>
+            <a href="https://github.com/jag-k">
+              <svg aria-label="Github">
+                <use xlink:href="#fa6-brands-github"></use>
+              </svg>
+              @jag-k
+            </a>
+          </li>
+          <li style="color: #1da1f2">
+            <a href="https://twitter.com/jag_k_">
+              <svg aria-label="Twitter">
+                <use xlink:href="#fa6-brands-x-twitter"></use>
+              </svg>
+              @jag_k_
+            </a>
+          </li>
+          <li style="color: #0088cc">
+            <a href="https://t.me/jag_k">
+              <svg aria-label="Telegram">
+                <use xlink:href="#fa6-brands-telegram"></use>
+              </svg>
+              @jag_k
+            </a>
+          </li>
+          <li style="color: #db61a2">
+            <a href="https://github.com/sponsors/jag-k">
+              <svg>
+                <use xlink:href="#simple-icons-githubsponsors"></use>
+              </svg>
+              <span> <s>Onlyfans</s> GitHub Sponsors </span>
+            </a>
+          </li>
+          <li style="color: #4b86c2">
+            <a href="https://jag-k.github.io/minskjs11-jsx">
+              <img src="https://shwr.me/icons/any.svg" alt="shower" />
+              <span>jag-k.github.io/minskjs11-jsx</span>
+            </a>
+          </li>
+        </ul>
+
+        <img
+          alt="avatar"
+          class="avatar"
+          src="public/images/avatar.jpg"
+          width="460"
+          height="460"
+        />
+      </div>
+      <a class="copyright right" href="https://jag-k.github.io/minskjs11-jsx">
+        <qr-code data="https://jag-k.github.io/minskjs11-jsx" size="150" />
+      </a>
+    </section>
+
+    <div class="progress"></div>
+
+    <!--<footer class=" badge">-->
+    <!--    <a href="https://github.com/shower/shower">Fork me on GitHub</a>-->
+    <!--</footer>-->
+
+    <svg style="display: none">
+      <symbol viewBox="0 0 24 24" id="simple-icons-githubsponsors">
+        <path
+          fill="currentColor"
+          d="M17.625 1.499c-2.32 0-4.354 1.203-5.625 3.03c-1.271-1.827-3.305-3.03-5.625-3.03C3.129 1.499 0 4.253 0 8.249c0 4.275 3.068 7.847 5.828 10.227a33.14 33.14 0 0 0 5.616 3.876l.028.017l.008.003l-.001.003c.163.085.342.126.521.125c.179.001.358-.041.521-.125l-.001-.003l.008-.003l.028-.017a33.14 33.14 0 0 0 5.616-3.876C20.932 16.096 24 12.524 24 8.249c0-3.996-3.129-6.75-6.375-6.75m-.919 15.275a30.766 30.766 0 0 1-4.703 3.316l-.004-.002l-.004.002a30.955 30.955 0 0 1-4.703-3.316c-2.677-2.307-5.047-5.298-5.047-8.523c0-2.754 2.121-4.5 4.125-4.5c2.06 0 3.914 1.479 4.544 3.684c.143.495.596.797 1.086.796c.49.001.943-.302 1.085-.796c.63-2.205 2.484-3.684 4.544-3.684c2.004 0 4.125 1.746 4.125 4.5c0 3.225-2.37 6.216-5.048 8.523"
+        ></path>
+      </symbol>
+      <symbol viewBox="0 0 496 512" id="fa6-brands-telegram">
+        <path
+          fill="currentColor"
+          d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248s248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3c-3.476 18.584-10.322 24.816-16.948 25.425c-14.4 1.326-25.338-9.517-39.287-18.661c-21.827-14.308-34.158-23.215-55.346-37.177c-24.485-16.135-8.612-25 5.342-39.5c3.652-3.793 67.107-61.51 68.335-66.746c.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142q-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123c-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7q108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789c2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716a43.765 43.765 0 0 1 .417 9.769"
+        ></path>
+      </symbol>
+      <symbol viewBox="0 0 496 512" id="fa6-brands-github">
+        <path
+          fill="currentColor"
+          d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6c-3.3.3-5.6-1.3-5.6-3.6c0-2 2.3-3.6 5.2-3.6c3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9c2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9c.3 2 2.9 3.3 5.9 2.6c2.9-.7 4.9-2.6 4.6-4.6c-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2c1.6 1.6 3.9 2.3 5.2 1c1.3-1 1-3.3-.7-5.2c-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9c1.6 1 3.6.7 4.3-.7c.7-1.3-.3-2.9-2.3-3.9c-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2c2.3 2.3 5.2 2.6 6.5 1c1.3-1.3.7-4.3-1.3-6.2c-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9c1.6 2.3 4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2c-1.4-2.3-4-3.3-5.6-2"
+        ></path>
+      </symbol>
+      <symbol viewBox="0 0 512 512" id="fa6-brands-x-twitter">
+        <path
+          fill="currentColor"
+          d="M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"
+        ></path>
+      </symbol>
+    </svg>
+
+    <script src="public/scripts/highlight/highlight.min.js"></script>
+    <script src="public/scripts/highlight/languages/json.min.js"></script>
+    <script src="public/scripts/highlight/languages/javascript.min.js"></script>
+    <script src="public/scripts/highlight/languages/typescript.min.js"></script>
+    <script src="public/scripts/highlight/highlightjs-line-numbers.min.js"></script>
+    <script src="public/scripts/qr.js"></script>
+
+    <script
+      src="node_modules/@shower/core/dist/shower.js"
+      data-step-selector=":is(.next,.spotlight-code)"
+    ></script>
+    <script src="public/scripts/index.js"></script>
+
+    <!-- Copyright © 2024 Jag_k -->
+  </body>
+</html>
