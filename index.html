@@ -51,7 +51,7 @@
             <span class="gray" style="display: block; font-size: 0.8em">(в свой 21 год)</span>
           </li>
           <li>
-            Работаю Python Backend developer <br />
+            Python Backend developer <br />
             в компании OpenWeather
           </li>
         </ul>
@@ -244,7 +244,7 @@ if (config.runsInWidget) {
 
       <p class="shout next">❌ Больно</p>
       <p class="place bottom left next" style="padding: 0.25em 1em; opacity: 0.5">
-        Ускорено в 5 раз. В реальности видео длинной 2:37
+        Ускорено в 5 раз. В реальности видео длиной 2:37
       </p>
       <video muted class="preview-video next" width="498" height="1080" playback-rate="5">
         <source src="public/videos/webm/code_on_iphone.webm" type="video/webm" />
@@ -425,7 +425,7 @@ if (config.runsInWidget) {
 
     <section class="slide">
       <h2>Hello World.tsx (compiled)</h2>
-      <pre><code class="hljs language-javascript nohljsln-visual" data-spotlight-code="1;2;4">const widget = (
+      <pre><code class="hljs language-javascript nohljsln-visual">const widget = (
   ScriptableJSX.createElement("widget", null,
     ScriptableJSX.createElement("text", { color: Color.red() },
     "Hello World!"
@@ -499,7 +499,7 @@ class ScriptableJSX {
     </section>
 
     <section class="slide">
-      <pre><code class="hljs language-javascript nohljsln-visual">function widgetCreateElement(element, props, ...children) {
+      <pre><code class="hljs language-javascript nohljsln-visual" data-spotlight-code="4;5">function widgetCreateElement(element, props, ...children) {
   switch (element) {
     case "widget":
       const widget = new ListWidget();
@@ -522,7 +522,7 @@ class ScriptableJSX {
     </section>
 
     <section class="slide">
-      <pre><code class="hljs language-javascript nohljsln-visual">function processContainerChildren(widget, children) {
+      <pre><code class="hljs language-javascript nohljsln-visual" data-spotlight-code="2;3;4;8;10;11;12">function processContainerChildren(widget, children) {
   for (const child of children) {
     if (typeof child === "string" || ...) { widget.addText(String(child)); }
     else if (typeof child === "object") {
@@ -549,7 +549,7 @@ class ScriptableJSX {
 
     <section class="slide">
       <h2>tsconfig.json</h2>
-      <pre><code class="hljs language-json">{
+      <pre><code class="hljs language-json" data-spotlight-code="3;4">{
   "compilerOptions": {
     "jsx": "react",
     "jsxFactory": "ScriptableJSX.createElement",
@@ -567,7 +567,7 @@ class ScriptableJSX {
 
     <section class="slide">
       <h2>rollup.config.js</h2>
-      <pre><code class="hljs language-javascript">import typescript from '@rollup/plugin-typescript';
+      <pre><code class="hljs language-javascript" data-spotlight-code="3;11">import typescript from '@rollup/plugin-typescript';
 import scriptableBundle from "@jag-k/rollup-plugin-scriptable";
 import * as config from "./config.json";
 import {nodeResolve} from '@rollup/plugin-node-resolve';
@@ -599,7 +599,7 @@ export default {
 
     <section class="slide">
       <h2>Hello JSX.scriptable</h2>
-      <pre><code class="hljs language-json">{
+      <pre><code class="hljs language-json" data-spotlight-code="9">{
   "always_run_in_app": false,
   "icon": {
     "color": "yellow",
