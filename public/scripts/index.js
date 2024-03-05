@@ -35,11 +35,9 @@ const fullSlideVideoObserver = new MutationObserver(function (mutations) {
   });
 });
 
-document
-  .querySelectorAll(".slide:has(video:not(.next))")
-  .forEach(function (slide) {
-    fullSlideVideoObserver.observe(slide, { attributes: true });
-  });
+document.querySelectorAll(".slide:has(video:not(.next))").forEach(function (slide) {
+  fullSlideVideoObserver.observe(slide, { attributes: true });
+});
 
 document.querySelectorAll("code.hljs").forEach(function (block) {
   hljs.highlightElement(block);
@@ -48,8 +46,7 @@ document.querySelectorAll("code.hljs").forEach(function (block) {
     const startLine = Number(block.dataset.lnStartFrom) || 1;
     const rows = block.querySelector("tbody").querySelectorAll("tr");
     block.dataset.spotlightCode.split(";").forEach(function (row) {
-      if (!row.includes("-"))
-        return rows[Number(row) - startLine].classList.add("spotlight-code");
+      if (!row.includes("-")) return rows[Number(row) - startLine].classList.add("spotlight-code");
       const [start, end] = row.split("-");
     });
   }
