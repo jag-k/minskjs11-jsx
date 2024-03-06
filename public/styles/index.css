@@ -291,7 +291,6 @@ code[data-spotlight-code] {
 }
 
 pre:has(table.hljs-ln) {
-  overflow: hidden;
   margin-left: -2em;
   width: fit-content;
 
